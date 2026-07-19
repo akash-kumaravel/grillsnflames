@@ -40,27 +40,49 @@ export default function App() {
   // Handle initial URL load and back/forward browser navigation
   useEffect(() => {
     const handleUrlChange = () => {
+      const path = window.location.pathname;
+      const segments = path.split('/').filter(Boolean);
       const params = new URLSearchParams(window.location.search);
-      const viewParam = params.get('view') as PageId | null;
-      const projectParam = params.get('project');
-      const serviceParam = params.get('service');
 
-      if (projectParam && PROJECTS.some(p => p.id === projectParam)) {
-        setActiveProjectId(projectParam);
+      let view: PageId = 'home';
+      let project: string | null = null;
+      let service: string | null = null;
+
+      // Parse pathname segments
+      if (segments.length === 1) {
+        const seg = segments[0];
+        if (['home', 'work', 'services', 'about', 'contact'].includes(seg)) {
+          view = seg as PageId;
+        }
+      } else if (segments.length === 2) {
+        const [type, id] = segments;
+        if (type === 'project') {
+          project = id;
+        } else if (type === 'service') {
+          service = id;
+        }
+      } else {
+        // Fallback for backwards compatibility with query params (?view=..., ?project=..., ?service=...)
+        const viewParam = params.get('view') as PageId | null;
+        if (viewParam && ['home', 'work', 'services', 'about', 'contact'].includes(viewParam)) {
+          view = viewParam;
+        }
+        project = params.get('project');
+        service = params.get('service');
+      }
+
+      if (project && PROJECTS.some(p => p.id === project)) {
+        setActiveProjectId(project);
       } else {
         setActiveProjectId(null);
       }
 
-      if (serviceParam && SERVICES_LIST.some(s => s.id === serviceParam)) {
+      if (service && SERVICES_LIST.some(s => s.id === service)) {
         setCurrentPage('services');
-        setActiveServiceId(serviceParam);
+        setActiveServiceId(service);
       } else {
         setActiveServiceId(null);
-        if (viewParam && ['home', 'work', 'services', 'about', 'contact'].includes(viewParam)) {
-          setCurrentPage(viewParam);
-        } else if (!projectParam) {
-          setCurrentPage('home');
-        }
+        setCurrentPage(view);
       }
     };
 
@@ -70,46 +92,19 @@ export default function App() {
     return () => window.removeEventListener('popstate', handleUrlChange);
   }, []);
 
-  // Sync state changes to browser URL query parameters
+  // Sync state changes to browser URL paths
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const viewParam = params.get('view');
-    const projectParam = params.get('project');
-    const serviceParam = params.get('service');
-
-    let shouldUpdate = false;
-    const newParams = new URLSearchParams();
-
+    let targetPath = '/';
     if (activeProjectId) {
-      if (projectParam !== activeProjectId) {
-        newParams.set('project', activeProjectId);
-        shouldUpdate = true;
-      } else {
-        newParams.set('project', activeProjectId);
-      }
+      targetPath = `/project/${activeProjectId}`;
     } else if (activeServiceId) {
-      if (serviceParam !== activeServiceId) {
-        newParams.set('service', activeServiceId);
-        shouldUpdate = true;
-      } else {
-        newParams.set('service', activeServiceId);
-      }
-    } else {
-      const targetView = currentPage === 'home' ? null : currentPage;
-      if (viewParam !== targetView) {
-        if (targetView) {
-          newParams.set('view', targetView);
-        }
-        shouldUpdate = true;
-      } else if (targetView) {
-        newParams.set('view', targetView);
-      }
+      targetPath = `/service/${activeServiceId}`;
+    } else if (currentPage !== 'home') {
+      targetPath = `/${currentPage}`;
     }
 
-    if (shouldUpdate) {
-      const searchStr = newParams.toString();
-      const newUrl = searchStr ? `?${searchStr}` : window.location.pathname;
-      window.history.pushState(null, '', newUrl);
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState(null, '', targetPath);
     }
   }, [currentPage, activeProjectId, activeServiceId]);
 
@@ -165,11 +160,11 @@ export default function App() {
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     let canonicalUrl = 'https://grillsandflames.ae';
     if (activeProjectId) {
-      canonicalUrl += `/?project=${activeProjectId}`;
+      canonicalUrl += `/project/${activeProjectId}`;
     } else if (activeServiceId) {
-      canonicalUrl += `/?service=${activeServiceId}`;
+      canonicalUrl += `/service/${activeServiceId}`;
     } else if (currentPage !== 'home') {
-      canonicalUrl += `/?view=${currentPage}`;
+      canonicalUrl += `/${currentPage}`;
     }
 
     if (canonicalLink) {
