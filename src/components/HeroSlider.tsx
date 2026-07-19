@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, Play, Compass } from 'lucide-react';
+import { Play, Compass } from 'lucide-react';
 
 interface Slide {
   id: number;
@@ -370,25 +370,7 @@ export default function HeroSlider({ onLearnMoreClick, onContactClick }: HeroSli
         </div>
       </div>
 
-      {/* Manual Arrow Controls */}
-      <div className="absolute bottom-12 right-4 md:right-12 z-30 flex items-center gap-2 md:gap-3">
-        <button
-          id="hero-btn-prev"
-          onClick={handlePrev}
-          className="p-2 md:p-3 bg-white/10 hover:bg-white/20 border border-white/15 text-white rounded-full transition-all duration-200 focus:outline-none backdrop-blur-sm cursor-pointer"
-          aria-label="Previous Slide"
-        >
-          <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
-        </button>
-        <button
-          id="hero-btn-next"
-          onClick={handleNext}
-          className="p-2 md:p-3 bg-white/10 hover:bg-white/20 border border-white/15 text-white rounded-full transition-all duration-200 focus:outline-none backdrop-blur-sm cursor-pointer"
-          aria-label="Next Slide"
-        >
-          <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-        </button>
-      </div>
+
 
       {/* Sliding indicators/ticks */}
       <div className="absolute bottom-12 left-4 md:left-12 z-30 flex items-center gap-2 md:gap-4 max-w-[65%] sm:max-w-none flex-wrap">
@@ -414,15 +396,6 @@ export default function HeroSlider({ onLearnMoreClick, onContactClick }: HeroSli
         })}
       </div>
 
-      {/* Subtle Scroll Hint */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 hidden md:flex flex-col items-center gap-1.5 animate-pulse">
-        <span className="text-[10px] font-mono tracking-[0.25em] text-white/40 uppercase">
-          SCROLL TO DISCOVER
-        </span>
-        <div className="w-[18px] h-[28px] border border-white/30 rounded-full flex justify-center p-1">
-          <div className="w-1 h-2 bg-[#B89A7A] rounded-full animate-bounce" />
-        </div>
-      </div>
     </div>
   );
 }

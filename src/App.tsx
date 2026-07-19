@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { PageId } from './types';
-import { PROJECTS } from './data';
+import { PROJECTS, SERVICES_LIST } from './data';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -21,6 +21,7 @@ import ContactView from './views/ContactView';
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+  const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
   const [footerHeight, setFooterHeight] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -36,6 +37,82 @@ export default function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Handle initial URL load and back/forward browser navigation
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const params = new URLSearchParams(window.location.search);
+      const viewParam = params.get('view') as PageId | null;
+      const projectParam = params.get('project');
+      const serviceParam = params.get('service');
+
+      if (projectParam && PROJECTS.some(p => p.id === projectParam)) {
+        setActiveProjectId(projectParam);
+      } else {
+        setActiveProjectId(null);
+      }
+
+      if (serviceParam && SERVICES_LIST.some(s => s.id === serviceParam)) {
+        setCurrentPage('services');
+        setActiveServiceId(serviceParam);
+      } else {
+        setActiveServiceId(null);
+        if (viewParam && ['home', 'work', 'services', 'about', 'contact'].includes(viewParam)) {
+          setCurrentPage(viewParam);
+        } else if (!projectParam) {
+          setCurrentPage('home');
+        }
+      }
+    };
+
+    handleUrlChange();
+
+    window.addEventListener('popstate', handleUrlChange);
+    return () => window.removeEventListener('popstate', handleUrlChange);
+  }, []);
+
+  // Sync state changes to browser URL query parameters
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const viewParam = params.get('view');
+    const projectParam = params.get('project');
+    const serviceParam = params.get('service');
+
+    let shouldUpdate = false;
+    const newParams = new URLSearchParams();
+
+    if (activeProjectId) {
+      if (projectParam !== activeProjectId) {
+        newParams.set('project', activeProjectId);
+        shouldUpdate = true;
+      } else {
+        newParams.set('project', activeProjectId);
+      }
+    } else if (activeServiceId) {
+      if (serviceParam !== activeServiceId) {
+        newParams.set('service', activeServiceId);
+        shouldUpdate = true;
+      } else {
+        newParams.set('service', activeServiceId);
+      }
+    } else {
+      const targetView = currentPage === 'home' ? null : currentPage;
+      if (viewParam !== targetView) {
+        if (targetView) {
+          newParams.set('view', targetView);
+        }
+        shouldUpdate = true;
+      } else if (targetView) {
+        newParams.set('view', targetView);
+      }
+    }
+
+    if (shouldUpdate) {
+      const searchStr = newParams.toString();
+      const newUrl = searchStr ? `?${searchStr}` : window.location.pathname;
+      window.history.pushState(null, '', newUrl);
+    }
+  }, [currentPage, activeProjectId, activeServiceId]);
+
   useEffect(() => {
     let title = "Grills & Flames | Luxury Outdoor Kitchens, Pergolas & Fire Features Dubai";
     let desc = "Discover Grills & Flames, Dubai's premier designer of custom luxury outdoor kitchens, high-end bioclimatic pergolas, and architectural fire features.";
@@ -45,6 +122,12 @@ export default function App() {
       if (proj) {
         title = `${proj.title} | Grills & Flames Luxury Outdoor Portfolios`;
         desc = proj.description;
+      }
+    } else if (activeServiceId) {
+      const service = SERVICES_LIST.find((s) => s.id === activeServiceId);
+      if (service) {
+        title = `${service.title} Design & Installation | Grills & Flames Dubai`;
+        desc = service.longDescription || service.description;
       }
     } else {
       switch (currentPage) {
@@ -77,7 +160,53 @@ export default function App() {
     if (metaDesc) {
       metaDesc.setAttribute('content', desc);
     }
-  }, [currentPage, activeProjectId]);
+
+    // Dynamic Canonical URL Update
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    let canonicalUrl = 'https://grillsandflames.ae';
+    if (activeProjectId) {
+      canonicalUrl += `/?project=${activeProjectId}`;
+    } else if (activeServiceId) {
+      canonicalUrl += `/?service=${activeServiceId}`;
+    } else if (currentPage !== 'home') {
+      canonicalUrl += `/?view=${currentPage}`;
+    }
+
+    if (canonicalLink) {
+      canonicalLink.setAttribute('href', canonicalUrl);
+    }
+
+    // Dynamic Social Share Tags Update (OG & Twitter)
+    const updateMetaTag = (property: string, content: string, isName = false) => {
+      const attribute = isName ? 'name' : 'property';
+      const element = document.querySelector(`meta[${attribute}="${property}"]`);
+      if (element) {
+        element.setAttribute('content', content);
+      }
+    };
+
+    let ogImage = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80';
+    if (activeProjectId) {
+      const proj = PROJECTS.find((p) => p.id === activeProjectId);
+      if (proj && proj.heroImage) {
+        ogImage = proj.heroImage;
+      }
+    } else if (activeServiceId) {
+      const service = SERVICES_LIST.find((s) => s.id === activeServiceId);
+      if (service && service.image) {
+        ogImage = service.image;
+      }
+    }
+
+    updateMetaTag('og:title', title);
+    updateMetaTag('og:description', desc);
+    updateMetaTag('og:image', ogImage);
+    updateMetaTag('og:url', canonicalUrl);
+
+    updateMetaTag('twitter:title', title, true);
+    updateMetaTag('twitter:description', desc, true);
+    updateMetaTag('twitter:image', ogImage, true);
+  }, [currentPage, activeProjectId, activeServiceId]);
 
   useEffect(() => {
     const element = footerRef.current;
@@ -97,7 +226,12 @@ export default function App() {
     return () => {
       observer.disconnect();
     };
-  }, [currentPage, activeProjectId]);
+  }, [currentPage, activeProjectId, activeServiceId]);
+
+  const resetProjectAndService = () => {
+    setActiveProjectId(null);
+    setActiveServiceId(null);
+  };
 
   return (
     <div id="app-root-shell" className="min-h-screen bg-neutral-100 text-neutral-900 flex flex-col justify-between selection:bg-[#B89A7A] selection:text-white relative">
@@ -111,7 +245,7 @@ export default function App() {
           currentPage={currentPage}
           activeProjectId={activeProjectId}
           setCurrentPage={setPageSmoothly}
-          resetProject={() => setActiveProjectId(null)}
+          resetProject={resetProjectAndService}
         />
 
         {/* Main Dynamic View Area */}
@@ -146,7 +280,7 @@ export default function App() {
         >
           <Footer
             setCurrentPage={setPageSmoothly}
-            resetProject={() => setActiveProjectId(null)}
+            resetProject={resetProjectAndService}
           />
         </div>
       )}
@@ -156,6 +290,7 @@ export default function App() {
   function setPageSmoothly(page: PageId) {
     setCurrentPage(page);
     setActiveProjectId(null);
+    setActiveServiceId(null);
     window.scrollTo(0, 0);
   }
 
@@ -180,6 +315,8 @@ export default function App() {
       case 'services':
         return (
           <ServicesView
+            activeServiceId={activeServiceId}
+            setActiveServiceId={setActiveServiceId}
             setCurrentPage={setPageSmoothly}
             onProjectSelect={(id) => {
               setActiveProjectId(id);

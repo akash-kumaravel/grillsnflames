@@ -23,13 +23,19 @@ import {
 } from 'lucide-react';
 
 interface ServicesViewProps {
+  activeServiceId: string | null;
+  setActiveServiceId: (id: string | null) => void;
   setCurrentPage?: (page: PageId) => void;
   onProjectSelect?: (projectId: string) => void;
 }
 
-export default function ServicesView({ setCurrentPage, onProjectSelect }: ServicesViewProps) {
+export default function ServicesView({
+  activeServiceId,
+  setActiveServiceId,
+  setCurrentPage,
+  onProjectSelect
+}: ServicesViewProps) {
   // Navigation & Detail states
-  const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
@@ -523,15 +529,7 @@ export default function ServicesView({ setCurrentPage, onProjectSelect }: Servic
             ))}
           </motion.div>
 
-          <div className="flex justify-center mt-12">
-            <button
-              id="services-get-started-btn"
-              onClick={handleGetStarted}
-              className="rounded-full bg-neutral-900 hover:bg-[#B89A7A] text-white px-10 py-4 text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-sm cursor-pointer"
-            >
-              Request Design Consultation
-            </button>
-          </div>
+
 
         </div>
       </section>
