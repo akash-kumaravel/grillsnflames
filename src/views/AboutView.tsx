@@ -72,7 +72,7 @@ export default function AboutView() {
           initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.9 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+          src="/assets/about.png"
           alt="Luxury villa outdoor lounge architecture"
           className="absolute inset-0 w-full h-full object-cover"
           referrerPolicy="no-referrer"

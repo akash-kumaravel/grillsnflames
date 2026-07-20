@@ -28,13 +28,20 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Upper Brand Presentation Row */}
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 pb-12 border-b border-neutral-900">
-          <div>
-            <h3 className="text-2xl font-light tracking-[0.25em] text-white uppercase font-sans">
-              Grills <span className="text-[#B89A7A]">&amp;</span> Flames
-            </h3>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#B89A7A] mt-2 font-medium">
-              Outdoor &amp; Indoor Luxury
-            </p>
+          <div className="flex items-center gap-4">
+            <img
+              src="/assets/logo.png"
+              alt="Grills & Flames Logo"
+              className="h-10 sm:h-12 w-auto object-contain shrink-0"
+            />
+            <div>
+              <h3 className="text-2xl font-light tracking-[0.25em] text-white uppercase font-sans">
+                Grills <span className="text-[#B89A7A]">&amp;</span> Flames
+              </h3>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#B89A7A] mt-1 font-medium">
+                Outdoor &amp; Indoor Luxury
+              </p>
+            </div>
           </div>
           <p className="max-w-md text-sm text-neutral-500 font-light leading-relaxed">
             Crafting architectural pergolas, customized professional-grade BBQ stations, immersive fire features, and magnificent custom outdoor kitchens across the United Arab Emirates.
@@ -80,17 +87,60 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
             </div>
           </div>
 
-          {/* Specialties / Expertise */}
+          {/* Services List */}
           <div className="flex flex-col gap-4">
             <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white">
-              Our Expertise
+              Our Services
             </h4>
-            <ul className="flex flex-col gap-3 text-sm font-light text-neutral-400">
-              <li className="hover:text-white transition-colors duration-300">Custom Aluminum Pergolas</li>
-              <li className="hover:text-white transition-colors duration-300">Custom Built BBQ Stations</li>
-              <li className="hover:text-white transition-colors duration-300">Luxury Fire Features &amp; Pits</li>
-              <li className="hover:text-white transition-colors duration-300">Premium Outdoor Kitchens</li>
-              <li className="hover:text-white transition-colors duration-300">Premium Hardscaping Design</li>
+            <ul className="flex flex-col gap-2.5 text-xs font-light text-neutral-400">
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Pergolas
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Outdoor Fire Pits
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Indoor Fire Pits
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Decorative Fire Bowls
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Custom BBQ Stations
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Outdoor Kitchens
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -136,42 +186,27 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://instagram.com/secretgardenslandscaping"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" strokeWidth={1.5} />
               </a>
               <a
-                href="https://facebook.com/SecretGardensLandscaping"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" strokeWidth={1.5} />
               </a>
               <a
-                href="https://linkedin.com/company/secret-gardens-llc"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" strokeWidth={1.5} />
               </a>
             </div>
-            <a 
-              href="https://maps.google.com/?q=Grills+and+Flames+Dubai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-[#B89A7A] hover:text-white transition-colors font-medium mt-1 w-fit"
-            >
-              <span>Locate on Google Maps</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
           </div>
         </div>
 
@@ -186,7 +221,7 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
         {/* Copyright & Technical Fineprint */}
         <div className="border-t border-neutral-900/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-neutral-600 font-light">
           <div>
-            &copy; {currentYear} Grills and Flames LLC All Rights Reserved.
+            &copy; 2026 <a href="https://www.memoinfotech.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#B89A7A] transition-colors underline underline-offset-2">Memo Infotech</a>. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
             <button onClick={() => handleNavClick('home')} className="hover:text-[#B89A7A] transition-colors">Home</button>

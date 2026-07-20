@@ -76,20 +76,6 @@ export default function ProjectsGrid({ onProjectSelect, limit }: ProjectsGridPro
     <section id="portfolio-grid-section" className="py-24 md:py-32 bg-neutral-50/50 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
-        {/* Section Header - Consistent Layout Container */}
-        <div className="flex flex-col gap-6 mb-16 max-w-3xl text-left items-start">
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#B89A7A] tracking-[0.2em] uppercase">
-            <span className="w-6 h-[1px] bg-[#B89A7A]" />
-            <span>OUR WORKS</span>
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-neutral-900 tracking-tight leading-tight uppercase">
-            OUR WORKS
-          </h2>
-          <p className="text-sm text-neutral-500 leading-relaxed font-light mt-2 max-w-2xl">
-            Explore our portfolio of custom luxury outdoor kitchens, bioclimatic pergolas, and architectural fire features built to Dubai's highest engineering standards.
-          </p>
-        </div>
-
         {/* Filter Navigation Tabs - Minimalist Design */}
         <div className="flex flex-wrap items-center justify-start gap-2 md:gap-3 mb-16 border-b border-neutral-200 pb-4">
           {categories.map((cat) => {

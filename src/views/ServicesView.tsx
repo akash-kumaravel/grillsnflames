@@ -114,274 +114,215 @@ export default function ServicesView({
   };
 
   // RENDERING DEDICATED SERVICE DETAIL PAGE
+  // RENDERING DEDICATED CLEAN SERVICE DETAIL PAGE (WHITE BACKGROUND & LEFT-ALIGNED TEXT)
   if (activeService) {
     const serviceIndex = SERVICES_LIST.findIndex(s => s.id === activeService.id) + 1;
     
     return (
-      <div id="service-detail-page" className="min-h-screen bg-[#FDFCF9] text-neutral-900 font-sans pb-32">
+      <div id="service-detail-page" className="min-h-screen bg-white text-neutral-900 font-sans pb-32">
         
-        {/* Sleek Floating Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="sticky top-0 bg-[#FDFCF9]/90 backdrop-blur-md border-b border-neutral-100/80 z-50"
-        >
-          <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
-            <button
-              id="back-to-services-btn"
-              onClick={() => {
-                setActiveServiceId(null);
-                window.scrollTo(0, 0);
-              }}
-              className="group flex items-center gap-3 text-neutral-800 hover:text-[#B89A7A] transition-colors duration-300 font-mono text-[10px] tracking-[0.25em] uppercase font-bold cursor-pointer"
-            >
-              <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-              <span>RETURN TO COLLECTION</span>
-            </button>
-            
-            <div className="flex items-center gap-2 font-mono text-[9px] tracking-widest text-neutral-400 uppercase">
-              <span className="text-[#B89A7A] font-semibold">DUBAI ARCHITECTURE</span>
-              <span>/</span>
-              <span>PORTFOLIO 0{serviceIndex}</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Dynamic Editorial Headline Area */}
-        <header className="max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-10">
+        {/* 1. Header Section */}
+        <header className="max-w-7xl mx-auto px-6 md:px-12 pt-28 md:pt-36 pb-12 border-b border-neutral-100">
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate="show"
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-6 text-left items-start"
           >
-            <motion.div variants={fadeInUpVariants} className="flex items-center gap-3">
-              <span className="font-mono text-[10px] font-bold tracking-[0.3em] text-[#B89A7A] uppercase">
-                CURATED ARCHITECTURAL SOLUTIONS &bull; EDITION 0{serviceIndex}
-              </span>
-            </motion.div>
-            
+            {/* Title */}
             <motion.h1 
               variants={fadeInUpVariants}
-              className="font-serif text-5xl md:text-7xl lg:text-8xl font-extralight tracking-tight leading-[1.1] text-neutral-900 uppercase"
+              className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight tracking-tight leading-[1.05] text-neutral-900 uppercase text-left"
             >
               {activeService.title}
             </motion.h1>
             
             <motion.div 
               variants={fadeInUpVariants}
-              className="h-[2px] w-20 bg-[#B89A7A]/40 mt-2" 
+              className="h-[2px] w-24 bg-[#B89A7A] mt-1" 
             />
             
+            {/* Tagline */}
             <motion.p 
               variants={fadeInUpVariants}
-              className="font-serif text-2xl md:text-3xl font-light text-neutral-500 italic max-w-4xl leading-relaxed mt-2"
+              className="font-serif text-xl sm:text-2xl md:text-3xl font-light text-[#B89A7A] italic max-w-4xl leading-relaxed text-left"
             >
               {activeService.tagline || 'Atmosphere & Spatial Elevation'}
             </motion.p>
+
+            {/* Highlights Badge Strip */}
+            <motion.div variants={fadeInUpVariants} className="flex flex-wrap items-center gap-3 pt-2">
+              <div className="px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono text-neutral-700 uppercase tracking-widest flex items-center gap-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#B89A7A]" />
+                <span>Dubai Municipality Approved</span>
+              </div>
+              <div className="px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono text-neutral-700 uppercase tracking-widest flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-[#B89A7A]" />
+                <span>316 Marine Grade Steel</span>
+              </div>
+              <div className="px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono text-neutral-700 uppercase tracking-widest flex items-center gap-2">
+                <Compass className="w-3.5 h-3.5 text-[#B89A7A]" />
+                <span>Custom 3D Visualization</span>
+              </div>
+            </motion.div>
           </motion.div>
         </header>
 
-        {/* Master Showcase Layout */}
-        <section className="max-w-5xl mx-auto px-6 md:px-12 py-8 flex flex-col gap-12">
-          
-          {/* Premium Master Photograph & Detailed Experience Prose */}
-          <div className="flex flex-col gap-12">
-            <motion.div 
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative aspect-[16/10] md:aspect-[16/9] rounded-[24px] overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.04)] border border-neutral-200/20 bg-neutral-100 group"
-            >
-              <img
-                src={activeService.image}
-                alt={activeService.title}
-                className="w-full h-full object-cover transition-transform duration-[2500ms] ease-out group-hover:scale-102"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-neutral-950/5 group-hover:bg-neutral-950/0 transition-colors duration-500" />
-              
-              {/* Discrete Floating Tag */}
-              <div className="absolute bottom-6 left-6 px-4 py-2.5 bg-[#FDFCF9]/95 backdrop-blur-md rounded-lg shadow-sm border border-neutral-200/30 font-mono text-[9px] font-bold text-neutral-800 tracking-[0.2em] uppercase">
-                STUDIO WORKSHOP COLLECTION
+        {/* 2. Full-Width Master Showcase Image (No Technical Spec Box) */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-16">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.99 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative aspect-[16/10] md:aspect-[21/9] rounded-3xl overflow-hidden shadow-xl border border-neutral-200/60 group bg-stone-100"
+          >
+            <img
+              src={activeService.image}
+              alt={activeService.title}
+              className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-103"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            
+            <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+              <div className="px-4 py-2 bg-white/90 backdrop-blur-md rounded-xl border border-neutral-200/50 font-mono text-[9px] font-bold text-neutral-900 tracking-[0.2em] uppercase text-left">
+                MASTER SPECIMEN
               </div>
-            </motion.div>
+              <div className="text-[10px] font-mono text-white uppercase tracking-widest font-semibold drop-shadow-md">
+                EMIRATES HILLS &bull; VILLA INSTALLATION
+              </div>
+            </div>
+          </motion.div>
+        </section>
 
-            {/* Comprehensive Design Narrative & Architectural Prose */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-8 max-w-3xl"
-            >
-              <div className="flex items-center gap-3">
-                <span className="w-10 h-[1px] bg-[#B89A7A]" />
-                <span className="text-[#B89A7A] font-mono text-[10px] tracking-[0.2em] font-bold uppercase">
-                  THE VISUAL PHILOSOPHY
+        {/* 3. Architectural Philosophy & Narrative */}
+        <section className="bg-[#FAF9F6] py-16 md:py-24 border-t border-b border-neutral-200/50">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-8 text-left items-start">
+            <div className="inline-flex items-center gap-3 text-xs font-mono font-bold text-[#B89A7A] tracking-[0.3em] uppercase">
+              <span className="w-8 h-[1px] bg-[#B89A7A]" />
+              <span>THE ARCHITECTURAL PHILOSOPHY</span>
+            </div>
+
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-neutral-900 leading-tight uppercase text-left max-w-4xl">
+              "Crafted to endure Dubai's climate while commanding the visual aesthetic of the villa facade."
+            </h2>
+
+            <p className="text-base md:text-lg text-neutral-700 font-light leading-relaxed max-w-3xl text-left">
+              {activeService.longDescription || activeService.description}
+            </p>
+
+            <p className="text-sm md:text-base text-neutral-600 font-light leading-relaxed max-w-3xl text-left">
+              Every structure we manufacture is an exercise in material restraint and balance. We combine heavy physical natural stone, micro-precision 316 marine-grade steel framing, and concealed gas utility channels to preserve pure unobstructed views.
+            </p>
+
+            {/* Bullet Highlights (if present) */}
+            {activeService.bullets && activeService.bullets.length > 0 && (
+              <div className="mt-4 flex flex-col gap-3 pt-6 border-t border-neutral-200/80 w-full max-w-3xl">
+                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest font-bold text-left">
+                  Key Performance Attributes
                 </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {activeService.bullets.map((bullet, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-xs text-neutral-700 font-light leading-relaxed text-left">
+                      <Check className="w-4 h-4 text-[#B89A7A] shrink-0 mt-0.5" />
+                      <span>{bullet}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p className="text-lg md:text-xl text-neutral-800 font-light leading-relaxed">
-                {activeService.longDescription || activeService.description}
-              </p>
-              <p className="text-sm md:text-base text-neutral-600 font-light leading-relaxed">
-                Every space we shape is an exercise in material restraint and balance. Built to integrate seamlessly with luxury villa facades, these custom structures combine heavy physical stone blocks, micro-precision framing, and concealed components to keep your outdoor views unobstructed and pure.
-              </p>
-            </motion.div>
+            )}
           </div>
         </section>
 
-        {/* Curated Aspects / Design Mastery Section */}
+        {/* 4. Signature Elements Bento Grid */}
         {activeService.features && activeService.features.length > 0 && (
-          <section className="bg-white py-24 border-t border-b border-neutral-200/40 mt-16">
+          <section className="py-20 md:py-28 max-w-7xl mx-auto px-6 md:px-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col gap-2 mb-12 text-left items-start max-w-xl"
+            >
+              <span className="text-[#B89A7A] font-mono text-[10px] tracking-[0.3em] font-bold uppercase">
+                ENGINEERING EXCELLENCE
+              </span>
+              <h3 className="font-serif text-3xl md:text-4xl font-light uppercase tracking-tight text-neutral-900 text-left">
+                Signature Features
+              </h3>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {activeService.features.map((feature, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="bg-[#FAF9F6] p-8 rounded-2xl border border-neutral-200/60 hover:border-[#B89A7A]/50 transition-all duration-300 group flex items-start gap-6 text-left"
+                >
+                  <span className="font-serif text-4xl font-extralight text-[#B89A7A] group-hover:scale-110 transition-transform">
+                    0{i + 1}
+                  </span>
+                  <div className="flex flex-col gap-2 text-left">
+                    <span className="font-mono text-[9px] font-bold tracking-[0.25em] text-[#B89A7A] uppercase text-left">
+                      SIGNATURE CAPABILITY
+                    </span>
+                    <p className="text-sm md:text-base text-neutral-700 font-light leading-relaxed text-left">
+                      {feature}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 5. Immersive Photo Gallery Mosaic */}
+        {activeService.gallery && activeService.gallery.length > 0 && (
+          <section className="bg-[#FAF9F6] py-20 border-t border-b border-neutral-200/50">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
               <motion.div 
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="flex flex-col gap-3 mb-16 max-w-xl"
+                className="flex flex-col gap-2 mb-12 text-left items-start"
               >
-                <span className="text-[#B89A7A] font-mono text-[10px] tracking-[0.25em] font-bold uppercase">
-                  EXPERIENCE DETAILS
+                <span className="text-[#B89A7A] text-[10px] font-bold tracking-[0.3em] font-mono uppercase">
+                  VISUAL ARCHIVE
                 </span>
-                <h3 className="font-serif text-3xl md:text-4xl font-light uppercase tracking-tight text-neutral-900">
-                  Key Design Aspects
+                <h3 className="font-serif text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase text-left">
+                  Form, Line &amp; Finish Showcase
                 </h3>
               </motion.div>
 
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-100px" }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16"
-              >
-                {activeService.features.map((feature, i) => (
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                {activeService.gallery.map((imgUrl, idx) => (
                   <motion.div 
-                    key={i} 
-                    variants={fadeInUpVariants}
-                    className="flex items-start gap-6"
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: idx * 0.1 }}
+                    className={`${idx === 0 ? 'md:col-span-8 aspect-[16/10]' : 'md:col-span-4 aspect-[4/3] md:aspect-auto'} relative rounded-2xl overflow-hidden border border-neutral-200/60 group bg-stone-100`}
                   >
-                    <span className="font-serif text-3xl font-extralight text-[#B89A7A]/70 leading-none">
-                      0{i + 1}
-                    </span>
-                    <div className="flex flex-col gap-2">
-                      <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-neutral-400 uppercase">SIGNATURE ELEMENT</span>
-                      <p className="text-sm md:text-base text-neutral-700 font-light leading-relaxed">
-                        {feature}
-                      </p>
+                    <img 
+                      src={imgUrl} 
+                      alt={`Gallery specimen ${idx + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms]"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                      <span className="font-mono text-[10px] text-white tracking-widest uppercase text-left">
+                        SPECIMEN 0{idx + 1} &bull; STUDIO COLLECTION
+                      </span>
                     </div>
                   </motion.div>
                 ))}
-              </motion.div>
-            </div>
-          </section>
-        )}
-
-        {/* Immersive Photo Grid */}
-        {activeService.gallery && activeService.gallery.length > 0 && (
-          <section className="bg-[#FDFCF9] py-24">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex flex-col gap-1.5 mb-12"
-              >
-                <span className="text-[#B89A7A] text-[10px] font-bold tracking-[0.25em] font-mono uppercase">
-                  VISUAL INSPIRATION
-                </span>
-                <h3 className="font-serif text-3xl font-light text-neutral-900 tracking-tight uppercase">
-                  Form, Line &amp; Finish
-                </h3>
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                
-                {/* 1st Image: Wide */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className="md:col-span-8 relative aspect-[16/10] rounded-2xl overflow-hidden shadow-sm border border-neutral-200/20 group"
-                >
-                  <img 
-                    src={activeService.gallery[0] || activeService.image} 
-                    alt="Atmospheric integration"
-                    className="w-full h-full object-cover group-hover:scale-101 transition-transform duration-[1200ms]"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-neutral-950/10 group-hover:bg-neutral-950/5 transition-colors duration-300" />
-                </motion.div>
-
-                {/* 2nd Image: High */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.15 }}
-                  className="md:col-span-4 relative aspect-[3/4] md:aspect-auto rounded-2xl overflow-hidden shadow-sm border border-neutral-200/20 group"
-                >
-                  <img 
-                    src={activeService.gallery[1] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'} 
-                    alt="Material texture and light"
-                    className="w-full h-full object-cover group-hover:scale-101 transition-transform duration-[1200ms]"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-neutral-950/10 group-hover:bg-neutral-950/5 transition-colors duration-300" />
-                </motion.div>
-
               </div>
             </div>
           </section>
         )}
-
-        {/* Call to Action banner */}
-        <section className="bg-neutral-950 text-white py-24 md:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 w-full h-full opacity-10 mix-blend-overlay">
-            <img 
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" 
-              alt="Background pattern" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          
-          <div className="max-w-5xl mx-auto px-6 text-center flex flex-col items-center gap-6 relative z-10">
-            <span className="text-[#B89A7A] text-[10px] md:text-[11px] font-bold tracking-[0.3em] uppercase font-mono">
-              LET'S DEFINE YOUR SPACE
-            </span>
-            <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl font-light uppercase tracking-tight max-w-3xl leading-tight">
-              Bring Michelin standard <span className="italic font-normal text-[#B89A7A]">fire &amp; cuisine</span> to your garden facade
-            </h2>
-            <div className="h-[1px] w-12 bg-[#B89A7A]/30 my-2" />
-            <p className="text-xs md:text-sm text-neutral-400 font-light max-w-xl leading-relaxed">
-              We collaborate closely with elite residential clients, master masonry contractors, and landscape architects across Emirates Hills, Palm Jumeirah, and Dubai Hills to install high-performance outdoor monuments.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
-              <button
-                id="service-cta-inquire-btn"
-                onClick={handleGetStarted}
-                className="px-8 py-3.5 bg-[#B89A7A] hover:bg-[#a38668] text-white text-xs font-semibold tracking-wider rounded-full transition-all duration-300 shadow-lg cursor-pointer"
-              >
-                Inquire Studio Meeting
-              </button>
-              <button
-                id="service-cta-portfolio-btn"
-                onClick={() => {
-                  setActiveServiceId(null);
-                  window.scrollTo(0, 0);
-                }}
-                className="px-8 py-3.5 border border-white/20 hover:border-white text-white text-xs font-semibold tracking-wider rounded-full transition-all duration-300 bg-transparent cursor-pointer"
-              >
-                Return to Collection
-              </button>
-            </div>
-          </div>
-        </section>
 
       </div>
     );
@@ -397,7 +338,7 @@ export default function ServicesView({
           initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.9 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+          src="/assets/service banner.png"
           alt="Luxury modern outdoor pavilion and deck"
           className="absolute inset-0 w-full h-full object-cover"
           referrerPolicy="no-referrer"
@@ -597,88 +538,6 @@ export default function ServicesView({
             </span>
           </button>
 
-        </div>
-      </section>
-
-      {/* 4. Standards and Approvals Section */}
-      <section id="standards-approvals-section" className="bg-[#FAF9F6] py-16 md:py-24 border-b border-neutral-100">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
-            {/* Left Column */}
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-6 flex flex-col gap-6"
-            >
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-[#B89A7A] tracking-[0.2em] uppercase">
-                <span className="w-6 h-[1px] bg-[#B89A7A]" />
-                <span>ENGINEERED EXCELLENCE</span>
-              </div>
-              <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-900 tracking-tight leading-tight uppercase">
-                Turnkey Technical Execution
-              </h2>
-              <p className="text-xs md:text-sm text-neutral-500 leading-relaxed font-light">
-                Our projects are not only beautiful but engineered to standard. We manage the entire integration process from gas pipeline extensions to structural municipal permits.
-              </p>
-              
-              <hr className="border-neutral-100 my-2" />
-              
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3 text-[13px] md:text-sm text-neutral-600 font-light py-1.5">
-                  <span className="w-4 h-4 border border-neutral-400 rounded-sm flex items-center justify-center flex-shrink-0 bg-white">
-                    <span className="text-[10px] font-bold text-neutral-800 font-mono">✓</span>
-                  </span>
-                  <span>Master-welded Marine Grade 316 framing</span>
-                </div>
-                <div className="flex items-center gap-3 text-[13px] md:text-sm text-neutral-600 font-light py-1.5">
-                  <span className="w-4 h-4 border border-neutral-400 rounded-sm flex items-center justify-center flex-shrink-0 bg-white">
-                    <span className="text-[10px] font-bold text-neutral-800 font-mono">✓</span>
-                  </span>
-                  <span>Dubai Municipality & Civil Defence approved engineering standards</span>
-                </div>
-                <div className="flex items-center gap-3 text-[13px] md:text-sm text-neutral-600 font-light py-1.5">
-                  <span className="w-4 h-4 border border-neutral-400 rounded-sm flex items-center justify-center flex-shrink-0 bg-white">
-                    <span className="text-[10px] font-bold text-neutral-800 font-mono">✓</span>
-                  </span>
-                  <span>We handle Emaar, Nakheel, and Developer permits directly</span>
-                </div>
-                <div className="flex items-center gap-3 text-[13px] md:text-sm text-neutral-600 font-light py-1.5">
-                  <span className="w-4 h-4 border border-neutral-400 rounded-sm flex items-center justify-center flex-shrink-0 bg-white">
-                    <span className="text-[10px] font-bold text-neutral-800 font-mono">✓</span>
-                  </span>
-                  <span>Premium climate-resilient stone masonry</span>
-                </div>
-                <div className="flex items-center gap-3 text-[13px] md:text-sm text-neutral-600 font-light py-1.5">
-                  <span className="w-4 h-4 border border-neutral-400 rounded-sm flex items-center justify-center flex-shrink-0 bg-white">
-                    <span className="text-[10px] font-bold text-neutral-800 font-mono">✓</span>
-                  </span>
-                  <span>Safe electronic auto-stop ignition systems</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column */}
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-6"
-            >
-              <div className="relative aspect-[4/3] rounded-[32px] overflow-hidden shadow-lg border border-neutral-100">
-                <img
-                  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
-                  alt="Luxury outdoor entertaining area and pergola"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </motion.div>
-
-          </div>
         </div>
       </section>
 

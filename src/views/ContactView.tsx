@@ -74,7 +74,7 @@ export default function ContactView() {
             <span>GET IN TOUCH</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-neutral-900 tracking-tight leading-tight uppercase">
-            LET'S CO-CREATE <br />YOUR DREAM SPACE
+            LET'S CREATE <br />YOUR DREAM SPACE
           </h1>
           <p className="text-sm text-neutral-500 leading-relaxed font-light mt-2 max-w-2xl">
             Have a custom project in mind? Reach out to our design and engineering team to bring premium luxury grills, fire features, and pergolas to your property.
@@ -275,7 +275,7 @@ export default function ContactView() {
                   <div>
                     <h3 className="font-serif text-xl font-medium text-neutral-900">Thank You</h3>
                     <p className="text-xs text-neutral-500 mt-2 max-w-sm leading-relaxed font-light">
-                      Your message has been successfully transmitted. Our landscape and swimming pool design consultants will connect with you shortly.
+                      Your message has been successfully transmitted. Our Grills &amp; Flames luxury design consultants will connect with you shortly.
                     </p>
                   </div>
                   <button

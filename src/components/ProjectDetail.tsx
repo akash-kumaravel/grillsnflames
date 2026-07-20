@@ -213,11 +213,6 @@ export default function ProjectDetail({ project, onBack, onInquire }: ProjectDet
                     <ExternalLink className="w-3 h-3 text-[#B89A7A]" />
                     <span>ZOOM</span>
                   </div>
-
-                  {/* Floating Frame Index Tag */}
-                  <div className="absolute bottom-4 left-4 z-20 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-lg border border-neutral-200/40 text-[10px] font-mono tracking-widest text-neutral-800 uppercase font-semibold">
-                    FRAME 0{idx + 1}
-                  </div>
                 </div>
               );
             })}
