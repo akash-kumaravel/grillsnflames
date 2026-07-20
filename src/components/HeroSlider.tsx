@@ -18,42 +18,42 @@ interface Slide {
 const HERO_SLIDES: Slide[] = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80',
+    image: '/assets/PergolaShowcas.png',
     category: 'ELEGANT SHADE SOLUTIONS',
     title: 'ELEGANT PERGOLAS',
     tagline: 'Stylish shade solutions for outdoor comfort.'
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1920&q=80',
+    image: '/assets/BBQStationPhot.png',
     category: 'PREMIUM OUTDOOR GRILLING',
     title: 'CUSTOM BBQ STATIONS',
     tagline: 'Grill in style with premium outdoor BBQs.'
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1920&q=80',
+    image: '/assets/FirepitNearPool.png',
     category: 'AMBIENT LUXURY RETREATS',
     title: 'OUTDOOR FIRE PITS',
     tagline: 'Cozy up with beautiful backyard fire pits.'
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1920&q=80',
+    image: '/assets/IndoorFirepitShowcas.png',
     category: 'INTERIOR ELEGANCE & COMFORT',
     title: 'INDOOR FIRE PITS',
     tagline: 'Add warmth and elegance indoors.'
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80',
+    image: '/assets/OutdoorKitchenShowcas.png',
     category: 'AL FRESCO ENTERTAINING',
     title: 'OUTDOOR KITCHENS',
     tagline: 'Cook and entertain in open-air luxury.'
   },
   {
     id: 6,
-    image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1920&q=80',
+    image: '/assets/DecorativeFireBowl.png',
     category: 'ARTISTIC DESIGN ELEMENTS',
     title: 'DECORATIVE FIRE BOWLS',
     tagline: 'Glow with stylish, artistic fire features.'
