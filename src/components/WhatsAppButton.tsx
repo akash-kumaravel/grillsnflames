@@ -41,7 +41,7 @@ export default function WhatsAppButton() {
 
   const launchWhatsAppDirect = () => {
     const formattedText = encodeURIComponent("Hello Grills & Flames, I would like to inquire about a custom outdoor kitchen or fireplace design.");
-    window.open(`https://wa.me/971561234567?text=${formattedText}`, '_blank');
+    window.open(`https://wa.me/97142345678?text=${formattedText}`, '_blank');
   };
 
   return (

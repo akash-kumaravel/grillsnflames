@@ -79,7 +79,7 @@ export default function ProjectDetail({ project, onBack, onInquire }: ProjectDet
             className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/10 hover:bg-white backdrop-blur-md border border-white/20 text-white hover:text-neutral-950 rounded-full text-xs font-bold tracking-widest transition-all duration-300 shadow-lg cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>BACK TO WORK</span>
+            <span>BACK TO WORKS</span>
           </motion.button>
         </div>
 

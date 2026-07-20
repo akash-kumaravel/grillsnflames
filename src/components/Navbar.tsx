@@ -38,7 +38,7 @@ export default function Navbar({
   const navItems: { label: string; id: PageId }[] = [
     { label: 'HOME', id: 'home' },
     { label: 'SERVICES', id: 'services' },
-    { label: 'WORK', id: 'work' },
+    { label: 'WORKS', id: 'work' },
     { label: 'ABOUT', id: 'about' },
   ];
 

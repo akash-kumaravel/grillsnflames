@@ -8,7 +8,7 @@ import { Project, Testimonial, FAQItem, ServiceDetail } from './types';
 export const PROJECTS: Project[] = [
   {
     id: 'ohana-grill',
-    title: 'OHANA GRILL & BAR',
+    title: 'CUSTOM OUTDOOR KITCHEN & BAR',
     subtitle: 'Design & Build',
     location: 'Jumeirah Golf Estates, Dubai',
     category: 'kitchen',
@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'serene-hearth',
-    title: 'SERENE PATH HEARTH',
+    title: 'SUNKEN FIRE FEATURE & LOUNGE',
     subtitle: 'Fire Feature & Lounge',
     location: 'Emirates Hills, Dubai',
     category: 'fire',
@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'breeze-pavilion',
-    title: 'BREEZE AL FRESCO PAVILION',
+    title: 'BIOCLIMATIC PERGOLA & DINING PAVILION',
     subtitle: 'Dining & Kitchen',
     location: 'Palm Jumeirah, Dubai',
     category: 'pavilion',
@@ -95,7 +95,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'redwood-grill',
-    title: 'REDWOOD MASTER SUITE GRILL',
+    title: 'CUSTOM COMPACT KITCHEN & SMOKER',
     subtitle: 'Design & Build',
     location: 'Al Barari, Dubai',
     category: 'kitchen',
@@ -123,7 +123,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'jumeirah-fire-dome',
-    title: 'JUMEIRAH ISLANDS FIRE DOME',
+    title: 'DECORATIVE FLOATING FIRE BOWL',
     subtitle: 'Fire Feature',
     location: 'Jumeirah Islands, Dubai',
     category: 'fire',
@@ -151,7 +151,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'golf-estate-pavilion',
-    title: 'JUMEIRAH GOLF ESTATE – PAVILION',
+    title: 'LUXURY PERGOLA & ROTISSERIE PAVILION',
     subtitle: 'Dining & Build',
     location: 'Jumeirah Golf Estates, Dubai',
     category: 'pavilion',

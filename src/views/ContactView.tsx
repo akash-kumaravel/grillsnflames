@@ -35,7 +35,7 @@ export default function ContactView() {
 
   const launchWhatsAppDirect = () => {
     const formattedText = encodeURIComponent("Hello Grills and Flames, I would like to inquire about a custom shade, fireplace, or outdoor cooking design.");
-    window.open(`https://wa.me/971565532053?text=${formattedText}`, '_blank');
+    window.open(`https://wa.me/97142345678?text=${formattedText}`, '_blank');
   };
 
   // Animation Variants
@@ -106,68 +106,46 @@ export default function ContactView() {
                 <ul className="flex flex-col gap-2.5 text-xs text-neutral-600">
                   <li className="flex items-center gap-2.5">
                     <Mail className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="mailto:info@grillsandflames.ae" className="hover:text-[#B89A7A] transition-colors">
-                      info@grillsandflames.ae
-                    </a>
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <Smartphone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="tel:+971509278089" className="hover:text-[#B89A7A] transition-colors">
-                      +971 50 927 8089
+                    <a href="mailto:info@flamesfireplace.com" className="hover:text-[#B89A7A] transition-colors">
+                      info@flamesfireplace.com
                     </a>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="tel:+97143266328" className="hover:text-[#B89A7A] transition-colors">
-                      +971 4 326 6328
+                    <a href="tel:+97142345678" className="hover:text-[#B89A7A] transition-colors">
+                      +971 4 234 5678
                     </a>
                   </li>
                 </ul>
               </motion.div>
 
-              {/* Careers */}
+              {/* Studio Office */}
               <motion.div variants={fadeInUp} className="flex flex-col gap-3">
                 <h3 className="font-sans font-bold text-xs uppercase tracking-wider text-neutral-900 border-b border-neutral-100 pb-2">
-                  Careers
+                  Studio Office
                 </h3>
-                <ul className="flex flex-col gap-2.5 text-xs text-neutral-600">
-                  <li className="flex items-center gap-2.5">
-                    <Mail className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="mailto:hr@grillsandflames.ae" className="hover:text-[#B89A7A] transition-colors">
-                      hr@grillsandflames.ae
-                    </a>
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <Smartphone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="tel:+971509278089" className="hover:text-[#B89A7A] transition-colors">
-                      +971 50 927 8089
-                    </a>
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <ExternalLink className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="#openings" className="hover:text-[#B89A7A] transition-colors font-semibold">
-                      View All Openings
-                    </a>
-                  </li>
-                </ul>
+                <p className="text-xs text-neutral-600 leading-relaxed font-light">
+                  Office 1420, Primetime Tower,<br />
+                  Business Bay, Dubai, UAE
+                </p>
               </motion.div>
 
               {/* New Projects */}
               <motion.div variants={fadeInUp} className="flex flex-col gap-3 sm:col-span-2 mt-2">
                 <h3 className="font-sans font-bold text-xs uppercase tracking-wider text-neutral-900 border-b border-neutral-100 pb-2">
-                  New Projects
+                  New Projects &amp; Consultations
                 </h3>
                 <ul className="flex flex-col gap-2.5 text-xs text-neutral-600">
                   <li className="flex items-center gap-2.5">
                     <Mail className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="mailto:ask@grillsandflames.ae" className="hover:text-[#B89A7A] transition-colors">
-                      ask@grillsandflames.ae
+                    <a href="mailto:info@flamesfireplace.com" className="hover:text-[#B89A7A] transition-colors">
+                      info@flamesfireplace.com
                     </a>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Smartphone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="tel:+971565532053" className="hover:text-[#B89A7A] transition-colors">
-                      +971 56 553 2053
+                    <a href="tel:+97142345678" className="hover:text-[#B89A7A] transition-colors">
+                      +971 4 234 5678
                     </a>
                   </li>
                 </ul>

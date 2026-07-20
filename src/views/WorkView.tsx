@@ -62,13 +62,13 @@ export default function WorkView({ onProjectSelect }: WorkViewProps) {
               variants={fadeInUpVariants}
               className="text-[#B89A7A] font-sans text-[10px] md:text-[11px] tracking-[0.25em] font-bold uppercase"
             >
-              SELECTED ATELIER COMPILATIONS
+              OUR WORKS &amp; PORTFOLIOS
             </motion.span>
             <motion.h1 
               variants={fadeInUpVariants}
               className="font-serif text-4xl md:text-6xl font-light text-white tracking-tight leading-tight max-w-2xl"
             >
-              Our Completed Masterpieces
+              Our Completed Works
             </motion.h1>
             <motion.p 
               variants={fadeInUpVariants}

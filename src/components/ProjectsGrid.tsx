@@ -59,6 +59,19 @@ export default function ProjectsGrid({ onProjectSelect, limit }: ProjectsGridPro
     }
   };
 
+  const getCategoryLabel = (category: string) => {
+    switch (category) {
+      case 'kitchen':
+        return 'OUTDOOR KITCHEN';
+      case 'fire':
+        return 'FIRE FEATURE';
+      case 'pavilion':
+        return 'PERGOLA & PAVILION';
+      default:
+        return category.toUpperCase();
+    }
+  };
+
   return (
     <section id="portfolio-grid-section" className="py-24 md:py-32 bg-neutral-50/50 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -67,13 +80,13 @@ export default function ProjectsGrid({ onProjectSelect, limit }: ProjectsGridPro
         <div className="flex flex-col gap-6 mb-16 max-w-3xl text-left items-start">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-[#B89A7A] tracking-[0.2em] uppercase">
             <span className="w-6 h-[1px] bg-[#B89A7A]" />
-            <span>THE PORTFOLIO</span>
+            <span>OUR WORKS</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-neutral-900 tracking-tight leading-tight uppercase">
-            SELECTED <br />ARCHITECTURAL MASTERPIECES
+            OUR WORKS
           </h2>
           <p className="text-sm text-neutral-500 leading-relaxed font-light mt-2 max-w-2xl">
-            A curated collection of custom, high-end outdoor living spaces. Each project represents a perfect fusion of rigorous structural craftsmanship and luxurious architectural design.
+            Explore our portfolio of custom luxury outdoor kitchens, bioclimatic pergolas, and architectural fire features built to Dubai's highest engineering standards.
           </p>
         </div>
 
@@ -148,7 +161,7 @@ export default function ProjectsGrid({ onProjectSelect, limit }: ProjectsGridPro
 
                       {/* Floating Minimal Category Badge */}
                       <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full border border-neutral-200/50 text-[8px] font-bold tracking-[0.2em] text-neutral-800 uppercase shadow-sm">
-                        {project.category}
+                        {getCategoryLabel(project.category)}
                       </div>
 
                       {/* Oversized Subtle Serial Number in Background of frame */}
