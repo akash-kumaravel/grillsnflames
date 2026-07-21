@@ -40,6 +40,7 @@ export default function Navbar({
     { label: 'SERVICES', id: 'services' },
     { label: 'WORKS', id: 'work' },
     { label: 'ABOUT', id: 'about' },
+    { label: 'CONTACT', id: 'contact' },
   ];
 
   const handleNavClick = (id: PageId) => {
@@ -103,17 +104,6 @@ export default function Navbar({
           })}
         </div>
 
-        {/* Desktop Phone / Consultation Quick CTA */}
-        <div className="hidden lg:flex items-center gap-4">
-          <button
-            id="nav-consultation-cta"
-            onClick={() => handleNavClick('contact')}
-            className="px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 border border-white/30 text-white hover:bg-white hover:text-neutral-950 cursor-pointer"
-          >
-            LET'S TALK
-          </button>
-        </div>
-
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button
@@ -153,13 +143,6 @@ export default function Navbar({
                 </button>
               );
             })}
-            <button
-              id="mobile-nav-consultation-cta"
-              onClick={() => handleNavClick('contact')}
-              className="mt-2 w-full text-center py-3 bg-[#B89A7A] hover:bg-[#a38668] text-white text-xs font-semibold tracking-widest rounded-full transition-colors cursor-pointer"
-            >
-              LET'S TALK
-            </button>
           </div>
         </div>
       )}

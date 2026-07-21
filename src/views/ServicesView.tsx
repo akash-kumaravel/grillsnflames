@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PageId } from '../types';
-import { PROJECTS, FAQS, SERVICES_LIST } from '../data';
+import { FAQS, SERVICES_LIST } from '../data';
 import { 
   Plus, 
   Minus,
@@ -45,12 +45,6 @@ export default function ServicesView({
   const handleGetStarted = () => {
     if (setCurrentPage) {
       setCurrentPage('contact');
-    }
-  };
-
-  const handleTakeALook = () => {
-    if (setCurrentPage) {
-      setCurrentPage('work');
     }
   };
 
@@ -471,72 +465,6 @@ export default function ServicesView({
           </motion.div>
 
 
-
-        </div>
-      </section>
-
-      {/* 3. Recently Completed Projects Section */}
-      <section id="recently-completed-projects-section" className="bg-white py-16 md:py-24 border-b border-neutral-100">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center">
-          
-          <div className="text-center flex flex-col gap-6 mb-16 items-center">
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#B89A7A] tracking-[0.2em] uppercase">
-              <span className="w-6 h-[1px] bg-[#B89A7A]" />
-              <span>SHOWCASE</span>
-              <span className="w-6 h-[1px] bg-[#B89A7A]" />
-            </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-light text-neutral-900 tracking-tight uppercase">
-              Recent Works
-            </h2>
-          </div>
-
-          {/* Grid of 6 Projects */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full"
-          >
-            {PROJECTS.slice(0, 6).map((project) => (
-              <motion.div
-                variants={fadeInUpVariants}
-                whileHover={{ y: -4, boxShadow: "0 15px 30px rgba(0,0,0,0.05)" }}
-                key={project.id}
-                id={`recently-completed-project-${project.id}`}
-                onClick={() => onProjectSelect?.(project.id)}
-                className="group cursor-pointer overflow-hidden rounded-2xl bg-white border border-neutral-100/80 shadow-sm transition-all duration-300"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
-                    src={project.heroImage}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-neutral-950/10 group-hover:bg-neutral-950/0 transition-colors duration-300" />
-                  
-                  {/* Hover Overlay Title */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col text-white">
-                    <span className="font-serif text-xs font-semibold tracking-wider">{project.title}</span>
-                    <span className="text-[10px] font-light text-neutral-200">{project.location}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Centered Take A Look Link */}
-          <button
-            id="projects-take-a-look-btn"
-            onClick={handleTakeALook}
-            className="group inline-flex items-center gap-2 mt-12 text-sm text-neutral-800 font-medium hover:text-neutral-950 transition-colors cursor-pointer"
-          >
-            <span className="w-2.5 h-2.5 rounded-full border border-neutral-400 group-hover:bg-neutral-950 transition-colors flex-shrink-0" />
-            <span className="border-b border-neutral-200 group-hover:border-neutral-800 pb-0.5 tracking-wider font-light">
-              View All Projects
-            </span>
-          </button>
 
         </div>
       </section>
