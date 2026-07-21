@@ -158,7 +158,7 @@ export default function App() {
 
     // Dynamic Canonical URL Update
     const canonicalLink = document.querySelector('link[rel="canonical"]');
-    let canonicalUrl = 'https://grillsandflames.ae';
+    let canonicalUrl = 'https://www.grillsandflamesbbq.com';
     if (activeProjectId) {
       canonicalUrl += `/project/${activeProjectId}`;
     } else if (activeServiceId) {
