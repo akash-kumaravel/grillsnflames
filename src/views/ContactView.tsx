@@ -4,8 +4,13 @@
  */
 
 import React, { useState } from 'react';
-import { Mail, Smartphone, Phone, ExternalLink, CheckCircle } from 'lucide-react';
+import { Mail, Smartphone, Phone, ExternalLink, CheckCircle, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = 'service_dzl8p0h';
+const EMAILJS_TEMPLATE_ID = 'template_default';
+const EMAILJS_PUBLIC_KEY = 'gmX3idNk9LXpymr6p';
 
 export default function ContactView() {
   const [formData, setFormData] = useState({
@@ -16,6 +21,7 @@ export default function ContactView() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,14 +29,45 @@ export default function ContactView() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) {
       setError("Please provide at least your Name and Email Address.");
       return;
     }
+
     setError(null);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const templateParams = {
+        name: formData.name,
+        from_name: formData.name,
+        user_name: formData.name,
+        email: formData.email,
+        from_email: formData.email,
+        user_email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        reply_to: formData.email,
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setIsSubmitted(true);
+    } catch (err: any) {
+      console.error('EmailJS submit error:', err);
+      const errorMessage =
+        err?.text || err?.message || 'Failed to send message. Please try again.';
+      setError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const launchWhatsAppDirect = () => {
@@ -247,13 +284,21 @@ export default function ContactView() {
                   {/* Submit Action Button */}
                   <div className="flex justify-start">
                     <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                      whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                       id="contact-form-submit"
                       type="submit"
-                      className="px-10 py-3 bg-[#B89A7A] hover:bg-[#a38668] text-white text-sm font-medium rounded-lg transition-colors duration-300 cursor-pointer shadow-sm font-semibold"
+                      disabled={isSubmitting}
+                      className="px-10 py-3 bg-[#B89A7A] hover:bg-[#a38668] disabled:bg-neutral-400 text-white text-sm font-medium rounded-lg transition-colors duration-300 cursor-pointer shadow-sm font-semibold flex items-center gap-2"
                     >
-                      Send
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <span>Send</span>
+                      )}
                     </motion.button>
                   </div>
 
