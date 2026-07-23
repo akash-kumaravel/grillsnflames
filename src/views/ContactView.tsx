@@ -39,32 +39,41 @@ export default function ContactView() {
     setIsSubmitting(true);
 
     try {
-      const templateParams = {
-        name: formData.name,
-        from_name: formData.name,
-        user_name: formData.name,
-        email: formData.email,
-        from_email: formData.email,
-        user_email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
-        reply_to: formData.email,
+      const payload = {
+        service_id: EMAILJS_SERVICE_ID,
+        template_id: EMAILJS_TEMPLATE_ID,
+        user_id: EMAILJS_PUBLIC_KEY,
+        template_params: {
+          name: formData.name,
+          from_name: formData.name,
+          user_name: formData.name,
+          email: formData.email,
+          from_email: formData.email,
+          user_email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          reply_to: formData.email,
+        }
       };
 
-      const emailjs = await import('@emailjs/browser');
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `HTTP ${response.status}: Failed to send message`);
+      }
 
       setIsSubmitted(true);
     } catch (err: any) {
-      console.error('EmailJS submit error:', err);
+      console.error('EmailJS send error:', err);
       const errorMessage =
-        err?.text || err?.message || 'Failed to send message. Please try again.';
+        err?.message || 'Failed to send message. Please try again.';
       setError(errorMessage);
     } finally {
       setIsSubmitting(false);
