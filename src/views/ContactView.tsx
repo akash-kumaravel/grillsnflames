@@ -6,7 +6,6 @@
 import React, { useState } from 'react';
 import { Mail, Smartphone, Phone, ExternalLink, CheckCircle, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID = 'service_dzl8p0h';
 const EMAILJS_TEMPLATE_ID = 'template_default';
@@ -51,6 +50,8 @@ export default function ContactView() {
         message: formData.message,
         reply_to: formData.email,
       };
+
+      const emailjs = await import('@emailjs/browser');
 
       await emailjs.send(
         EMAILJS_SERVICE_ID,
