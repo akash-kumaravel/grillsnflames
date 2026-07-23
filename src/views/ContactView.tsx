@@ -8,7 +8,7 @@ import { Mail, Smartphone, Phone, ExternalLink, CheckCircle, Loader2 } from 'luc
 import { motion, AnimatePresence } from 'motion/react';
 
 const EMAILJS_SERVICE_ID = 'service_dzl8p0h';
-const EMAILJS_TEMPLATE_ID = 'template_default';
+const EMAILJS_TEMPLATE_ID = 'template_ch21qi2';
 const EMAILJS_PUBLIC_KEY = 'gmX3idNk9LXpymr6p';
 
 export default function ContactView() {
