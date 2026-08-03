@@ -82,7 +82,7 @@ export default function ContactView() {
 
   const launchWhatsAppDirect = () => {
     const formattedText = encodeURIComponent("Hello Grills and Flames, I would like to inquire about a custom shade, fireplace, or outdoor cooking design.");
-    window.open(`https://wa.me/97142345678?text=${formattedText}`, '_blank');
+    window.open(`https://wa.me/971542112891?text=${formattedText}`, '_blank');
   };
 
   // Animation Variants
@@ -159,8 +159,8 @@ export default function ContactView() {
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="tel:+97142345678" className="hover:text-[#B89A7A] transition-colors">
-                      +971 4 234 5678
+                    <a href="tel:+971542112891" className="hover:text-[#B89A7A] transition-colors">
+                      +971 54 211 2891
                     </a>
                   </li>
                 </ul>
@@ -191,8 +191,8 @@ export default function ContactView() {
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Smartphone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="tel:+97142345678" className="hover:text-[#B89A7A] transition-colors">
-                      +971 4 234 5678
+                    <a href="tel:+971542112891" className="hover:text-[#B89A7A] transition-colors">
+                      +971 54 211 2891
                     </a>
                   </li>
                 </ul>

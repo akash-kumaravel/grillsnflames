@@ -9,7 +9,7 @@ import { MessageSquare, Send, X } from 'lucide-react';
 export default function WhatsAppButton() {
   const launchWhatsAppDirect = () => {
     const formattedText = encodeURIComponent("Hello Grills & Flames, I would like to inquire about a custom outdoor kitchen or fireplace design.");
-    window.open(`https://wa.me/97142345678?text=${formattedText}`, '_blank');
+    window.open(`https://wa.me/971542112891?text=${formattedText}`, '_blank');
   };
 
   return (
@@ -19,8 +19,8 @@ export default function WhatsAppButton() {
         id="whatsapp-floating-trigger"
         onClick={launchWhatsAppDirect}
         className="bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-2xl flex items-center justify-center relative group focus:outline-none transition-transform hover:scale-110 active:scale-95 cursor-pointer"
-        aria-label="Contact us on WhatsApp (+971 4 234 5678)"
-        title="Chat on WhatsApp (+971 4 234 5678)"
+        aria-label="Contact us on WhatsApp (+971 54 211 2891)"
+        title="Chat on WhatsApp (+971 54 211 2891)"
       >
         <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75 animate-ping -z-10 group-hover:hidden" />
         <svg

@@ -159,11 +159,11 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
               </div>
               <div className="flex flex-col gap-2">
                 <a
-                  href="tel:+97142345678"
+                  href="tel:+971542112891"
                   className="flex items-center gap-2.5 hover:text-white transition-colors duration-300"
                 >
                   <Phone className="w-4 h-4 text-[#B89A7A]" />
-                  <span>+971 4 234 5678</span>
+                  <span>+971 54 211 2891</span>
                 </a>
                 <a
                   href="mailto:info@flamesfireplace.com"
