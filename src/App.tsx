@@ -109,8 +109,8 @@ export default function App() {
   }, [currentPage, activeProjectId, activeServiceId]);
 
   useEffect(() => {
-    let title = "Grills & Flames | Luxury Outdoor Kitchens, Pergolas & Fire Features Dubai";
-    let desc = "Discover Grills & Flames, Dubai's premier designer of custom luxury outdoor kitchens, high-end bioclimatic pergolas, and architectural fire features.";
+    let title = "Grills & Flames Dubai | Luxury Outdoor Kitchens, BBQs & Fire Features";
+    let desc = "Grills & Flames designs and builds luxury outdoor kitchens, BBQ stations, pergolas, and fire features in Dubai and across the UAE.";
 
     if (activeProjectId) {
       const proj = PROJECTS.find((p) => p.id === activeProjectId);
@@ -127,24 +127,24 @@ export default function App() {
     } else {
       switch (currentPage) {
         case 'home':
-          title = "Grills & Flames | Luxury Outdoor Kitchens, Pergolas & Fire Features Dubai";
-          desc = "Dubai's premier designer of custom luxury outdoor kitchens, bioclimatic pergolas, premium BBQ stations, and architectural fire features.";
+          title = "Grills & Flames Dubai | Luxury Outdoor Kitchens, BBQs & Fire Features";
+          desc = "Grills & Flames designs and builds luxury outdoor kitchens, BBQ stations, pergolas, and fire features in Dubai and across the UAE.";
           break;
         case 'work':
-          title = "Architectural Portfolios | Grills & Flames Dubai";
-          desc = "Explore our selected premium architectural masterpieces. Custom outdoor kitchens, bioclimatic luxury pergolas, and decorative fire features built in Dubai.";
+          title = "Luxury Project Portfolio | Grills & Flames Dubai";
+          desc = "Explore our luxury outdoor kitchen, BBQ, pergola, and fire feature portfolio built for Dubai villas and commercial spaces.";
           break;
         case 'services':
-          title = "Luxury Outdoor Design Services | Grills & Flames Dubai";
-          desc = "Discover our professional design services: custom bioclimatic pergolas, state-of-the-art linear fire pits, fully integrated BBQ stations, and luxury masonry.";
+          title = "Luxury Outdoor Design Services Dubai | Grills & Flames";
+          desc = "Discover our design and build services for custom BBQ stations, pergolas, fire pits, outdoor kitchens, and luxury masonry in Dubai.";
           break;
         case 'about':
-          title = "About Grills & Flames | Master outdoor designers in Dubai";
+          title = "About Grills & Flames | Master Outdoor Designers in Dubai";
           desc = "Based in Dubai, Grills & Flames merges world-class structural craftsmanship with luxurious architectural designs for elegant al fresco living spaces.";
           break;
         case 'contact':
-          title = "Get In Touch | Grills & Flames Dubai";
-          desc = "Inquire about our professional outdoor kitchen, luxury fireplace, or motorized pergolas. Connect with our expert landscape design consultants today.";
+          title = "Contact Grills & Flames Dubai | Outdoor Kitchen & Fire Feature Experts";
+          desc = "Contact Grills & Flames for luxury outdoor kitchens, BBQ stations, pergolas, and fire features in Dubai and the UAE.";
           break;
       }
     }
@@ -158,7 +158,7 @@ export default function App() {
 
     // Dynamic Canonical URL Update
     const canonicalLink = document.querySelector('link[rel="canonical"]');
-    let canonicalUrl = 'https://www.grillsandflamesbbq.com';
+    let canonicalUrl = 'https://grillsandflames.ae';
     if (activeProjectId) {
       canonicalUrl += `/project/${activeProjectId}`;
     } else if (activeServiceId) {
@@ -180,7 +180,7 @@ export default function App() {
       }
     };
 
-    let ogImage = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80';
+    let ogImage = 'https://grillsandflames.ae/assets/logo.png';
     if (activeProjectId) {
       const proj = PROJECTS.find((p) => p.id === activeProjectId);
       if (proj && proj.heroImage) {
