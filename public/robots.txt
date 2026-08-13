@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://grillsandflames.ae/sitemap.xml
+Sitemap: https://www.grillsandflamesbbq.com/sitemap.xml
