@@ -1,168 +1,238 @@
-import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
-import { ActiveSection } from '../types';
-import { TAGLINE } from '../data';
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { PageId } from '../types';
+import { Facebook, Instagram, Linkedin, ExternalLink, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
 interface FooterProps {
-  onNavigate: (section: ActiveSection) => void;
+  setCurrentPage: (page: PageId) => void;
+  resetProject: () => void;
 }
 
-export default function Footer({ onNavigate }: FooterProps) {
+export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
+  const currentYear = new Date().getFullYear();
+
+  const handleNavClick = (page: PageId) => {
+    setCurrentPage(page);
+    resetProject();
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer
-      id="flames-global-footer"
-      className="bg-neutral-900 text-neutral-400 font-sans border-t border-neutral-800"
+      id="main-app-footer"
+      className="bg-[#0c0c0c] text-neutral-400 pt-28 md:pt-36 pb-12 font-sans border-t border-neutral-900 w-full"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
-        
-        {/* Top Segment: Brand logo to social columns split */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 pb-16 border-b border-neutral-800">
-          
-          {/* Brand/Slogan Column */}
-          <div className="md:col-span-4 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <img
-                src="/assets/flames%20logo.svg"
-                alt="Flames Fireplace logo"
-                width={150}
-                height={24}
-                className="h-6 w-auto object-contain"
-              />
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        {/* Upper Brand Presentation Row */}
+        <div className="flex flex-col md:flex-row items-start justify-between gap-8 pb-12 border-b border-neutral-900">
+          <div className="flex items-center gap-4">
+            <img
+              src="/assets/logo.png"
+              alt="Grills & Flames Logo"
+              className="h-10 sm:h-12 w-auto object-contain shrink-0"
+            />
+            <div>
+              <h3 className="text-2xl font-light tracking-[0.25em] text-white uppercase font-sans">
+                Grills <span className="text-[#B89A7A]">&amp;</span> Flames
+              </h3>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#B89A7A] mt-1 font-medium">
+                Outdoor &amp; Indoor Luxury
+              </p>
             </div>
-            
-            <p className="text-sm font-normal text-neutral-300">
-              {TAGLINE}
-            </p>
-            
-            <p className="text-xs text-neutral-500 leading-relaxed max-w-sm">
-              Flames Fireplace is the leading supplier of clean, smokeless decorative fire features. Utilizing clean bio-ethanol combustion and eco-friendly designs, we make warmth and ambiance fully accessible.
-            </p>
           </div>
-
-          {/* Quick structural catalog links column */}
-          <div className="md:col-span-2 space-y-4">
-            <p className="text-xs font-bold uppercase tracking-wider text-white">
-              Custom Spaces
-            </p>
-            <ul className="space-y-2.5 text-xs">
-              <li>
-                <a
-                  id="footer-nav-services"
-                  href="/services"
-                  onClick={(e) => { e.preventDefault(); onNavigate('services'); }}
-                  className="hover:text-white transition cursor-pointer text-orange-400 font-medium"
-                >
-                  Our Products
-                </a>
-              </li>
-              <li>
-                <a
-                  id="footer-nav-portfolio"
-                  href="/portfolio"
-                  onClick={(e) => { e.preventDefault(); onNavigate('portfolio'); }}
-                  className="hover:text-white transition cursor-pointer text-orange-400 font-medium"
-                >
-                  Our Works
-                </a>
-              </li>
-              <li>
-                <a
-                  id="footer-nav-contact"
-                  href="/contact"
-                  onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
-                  className="hover:text-white transition cursor-pointer text-orange-400 font-medium"
-                >
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Editorial / Info column */}
-          <div className="md:col-span-2 space-y-4">
-            <p className="text-xs font-bold uppercase tracking-wider text-white">
-              Our Organization
-            </p>
-            <ul className="space-y-2.5 text-xs">
-              <li>
-                <a
-                  id="footer-nav-about"
-                  href="/about"
-                  onClick={(e) => { e.preventDefault(); onNavigate('about'); }}
-                  className="hover:text-white transition cursor-pointer block"
-                >
-                  Our Story &amp; Values
-                </a>
-              </li>
-              <li>
-                <a
-                  id="footer-nav-faq"
-                  href="/faq"
-                  onClick={(e) => { e.preventDefault(); onNavigate('faq'); }}
-                  className="hover:text-white transition cursor-pointer block"
-                >
-                  FAQs &amp; Buyer Guides
-                </a>
-              </li>
-              <li>
-                <a
-                  id="footer-nav-blog"
-                  href="/blog"
-                  onClick={(e) => { e.preventDefault(); onNavigate('blog'); }}
-                  className="hover:text-white transition cursor-pointer block"
-                >
-                  Blog &amp; Articles
-                </a>
-              </li>
-              <li>
-                <a
-                  id="footer-nav-best-fireplace"
-                  href="/best-fireplace-dubai"
-                  onClick={(e) => { e.preventDefault(); onNavigate('best-fireplace-dubai'); }}
-                  className="hover:text-white transition cursor-pointer text-orange-400 font-semibold block"
-                >
-                  Best Fireplace in Dubai
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Local UAE NAP details column */}
-          <div className="md:col-span-4 space-y-4">
-            <p className="text-xs font-bold uppercase tracking-wider text-white">
-              Flames Fireplace Office UAE
-            </p>
-            
-            <ul className="space-y-3.5 text-xs">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>Office 1420, Primetime Tower, Business Bay, Dubai, United Arab Emirates</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-orange-500 shrink-0" />
-                <a href="tel:+971542112891" className="text-xs font-semibold text-neutral-200 hover:text-orange-400 block leading-tight">
-                  +971 54 211 2891
-                </a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-orange-500 shrink-0" />
-                <span>info@flamesfireplace.com</span>
-              </li>
-            </ul>
-          </div>
-
+          <p className="max-w-md text-sm text-neutral-500 font-light leading-relaxed">
+            Crafting architectural pergolas, customized professional-grade BBQ stations, immersive fire features, and magnificent custom outdoor kitchens across the United Arab Emirates.
+          </p>
         </div>
 
-        {/* Bottom Segment: Corporate Rights and SEO notations */}
-        <div className="pt-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-xs text-neutral-300">
-          
+        {/* Core Multi-Column Content Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pt-16 pb-16">
+          {/* Navigation Links */}
+          <div className="flex flex-col gap-4">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white">
+              Navigation
+            </h4>
+            <div className="flex flex-col gap-3 text-sm font-light">
+              <button
+                onClick={() => handleNavClick('home')}
+                className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
+              >
+                <span>Home</span>
+                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+              </button>
+              <button
+                onClick={() => handleNavClick('work')}
+                className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
+              >
+                <span>Featured Work</span>
+                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+              </button>
+              <button
+                onClick={() => handleNavClick('services')}
+                className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
+              >
+                <span>Services</span>
+                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+              </button>
+              <button
+                onClick={() => handleNavClick('contact')}
+                className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
+              >
+                <span>Get in Touch</span>
+                <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+              </button>
+            </div>
+          </div>
+
+          {/* Services List */}
+          <div className="flex flex-col gap-4">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white">
+              Our Services
+            </h4>
+            <ul className="flex flex-col gap-2.5 text-xs font-light text-neutral-400">
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Pergolas
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Outdoor Fire Pits
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Indoor Fire Pits
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Decorative Fire Bowls
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Custom BBQ Stations
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavClick('services')}
+                  className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
+                >
+                  Outdoor Kitchens
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Reach Us (Location & Direct Contacts) */}
+          <div className="flex flex-col gap-4">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white">
+              Contact &amp; Location
+            </h4>
+            <div className="flex flex-col gap-4 text-sm font-light">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#B89A7A] shrink-0 mt-0.5" />
+                <span className="leading-relaxed">
+                  Office 1420, Primetime Tower<br />
+                  Business Bay, Dubai, United Arab Emirates
+                </span>
+              </div>
+              <div className="flex flex-col gap-2">
+                <a
+                  href="tel:+971542112891"
+                  className="flex items-center gap-2.5 hover:text-white transition-colors duration-300"
+                >
+                  <Phone className="w-4 h-4 text-[#B89A7A]" />
+                  <span>+971 54 211 2891</span>
+                </a>
+                <a
+                  href="mailto:info@flamesfireplace.com"
+                  className="flex items-center gap-2.5 hover:text-white transition-colors duration-300"
+                >
+                  <Mail className="w-4 h-4 text-[#B89A7A]" />
+                  <span>info@flamesfireplace.com</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Connect */}
+          <div className="flex flex-col gap-4">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white">
+              Follow Our Journey
+            </h4>
+            <p className="text-xs font-light text-neutral-500 leading-relaxed mb-1">
+              Explore our latest masterpieces and behind-the-scenes transformations daily.
+            </p>
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" strokeWidth={1.5} />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-4 h-4" strokeWidth={1.5} />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" strokeWidth={1.5} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Communities Banner */}
+        <div className="border-t border-neutral-900 pt-8 pb-4">
+          <p className="text-[10px] text-neutral-600 font-light leading-relaxed tracking-wider">
+            <span className="font-semibold text-neutral-500 uppercase mr-1">PRESTIGIOUS COMMUNITIES WE SERVE:</span>
+            Emirates Hills &bull; Dubai Hills &bull; Palm Jumeirah &bull; Jumeirah Golf Estates &bull; Jumeirah Bay &bull; Jumeirah Islands &bull; MBR City &bull; Downtown Dubai &bull; Al Barari &bull; Saadiyat Island &bull; Yas Island &bull; Nareel Island &bull; Jubail Island &bull; Dubai &bull; Abu Dhabi &bull; Sharjah
+          </p>
+        </div>
+
+        {/* Copyright & Technical Fineprint */}
+        <div className="border-t border-neutral-900/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-neutral-600 font-light">
           <div>
-            <span>&copy; {new Date().getFullYear()} <a href="https://www.memoinfotech.com/" target="_blank" rel="noopener noreferrer" className="text-neutral-300 hover:text-white underline">Memo Infotech</a>. All rights reserved.</span>
+            &copy; 2026 <a href="https://www.memoinfotech.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#B89A7A] transition-colors underline underline-offset-2">Memo Infotech</a>. All rights reserved.
           </div>
-
-          {/* Schema designations removed from UI (kept in JSON-LD only) */}
-
+          <div className="flex items-center gap-4">
+            <button onClick={() => handleNavClick('home')} className="hover:text-[#B89A7A] transition-colors">Home</button>
+            <span>&bull;</span>
+            <button onClick={() => handleNavClick('work')} className="hover:text-[#B89A7A] transition-colors">Work</button>
+            <span>&bull;</span>
+            <button onClick={() => handleNavClick('services')} className="hover:text-[#B89A7A] transition-colors">Services</button>
+            <span>&bull;</span>
+            <button onClick={() => handleNavClick('contact')} className="hover:text-[#B89A7A] transition-colors">Contact</button>
+          </div>
         </div>
-
       </div>
     </footer>
   );
