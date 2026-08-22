@@ -1,0 +1,16 @@
+{
+  "name": "Grills & Flames Dubai",
+  "short_name": "Grills & Flames",
+  "description": "Luxury Outdoor Kitchens, BBQs & Fire Features in Dubai and UAE",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

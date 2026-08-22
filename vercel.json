@@ -1,15 +1,44 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
     {
       "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "all"
+        }
+      ]
     },
     {
       "source": "/robots.txt",
-      "destination": "/robots.txt"
-    },
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "all"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/|sitemap\\.xml|robots\\.txt|site\\.webmanifest|.*\\.[\\w]+$).*)",
       "destination": "/index.html"
     }
   ]
