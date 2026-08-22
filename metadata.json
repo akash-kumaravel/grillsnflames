@@ -1,6 +1,6 @@
 {
-  "name": "Grills and Flames",
-  "description": "Bespoke high-end luxury outdoor kitchens, custom BBQ grills, and fire feature design and build.",
+  "name": "Flames Fireplaces Catalog",
+  "description": "Super minimal, high-end Apple-style premium showcase for Flames Fireplace indoor and outdoor fire units, including 3D water vapor fire places, manual ethanol fire places, outdoor gas fire places, fire pots, fire tables, and custom integrated fire units.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
