@@ -153,8 +153,8 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#B89A7A] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  Office 1420, Primetime Tower<br />
-                  Business Bay, Dubai, United Arab Emirates
+                  Warehouse<br />
+                  1, Ras Al Khor Industrial Area 2, Dubai, UAE
                 </span>
               </div>
               <div className="flex flex-col gap-2">
@@ -163,14 +163,14 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
                   className="flex items-center gap-2.5 hover:text-white transition-colors duration-300"
                 >
                   <Phone className="w-4 h-4 text-[#B89A7A]" />
-                  <span>+971 54 211 2891</span>
+                  <span>054 211 2891</span>
                 </a>
                 <a
-                  href="mailto:info@flamesfireplace.com"
+                  href="mailto:info@grillsandflamesbbq.com"
                   className="flex items-center gap-2.5 hover:text-white transition-colors duration-300"
                 >
                   <Mail className="w-4 h-4 text-[#B89A7A]" />
-                  <span>info@flamesfireplace.com</span>
+                  <span>info@grillsandflamesbbq.com</span>
                 </a>
               </div>
             </div>

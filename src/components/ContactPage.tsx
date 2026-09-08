@@ -151,7 +151,7 @@ export default function ContactPage() {
                       id="contact-email"
                       type="email"
                       required
-                      placeholder="hello@flamesfireplace.com"
+                      placeholder="hello@grillsandflamesbbq.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-[#161616] border border-neutral-800 focus:bg-[#1a1a1a] focus:outline-none focus:border-orange-500 transition-all font-sans text-xs h-12 text-white"

@@ -153,14 +153,14 @@ export default function ContactView() {
                 <ul className="flex flex-col gap-2.5 text-xs text-neutral-600">
                   <li className="flex items-center gap-2.5">
                     <Mail className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="mailto:info@flamesfireplace.com" className="hover:text-[#B89A7A] transition-colors">
-                      info@flamesfireplace.com
+                    <a href="mailto:info@grillsandflamesbbq.com" className="hover:text-[#B89A7A] transition-colors">
+                      info@grillsandflamesbbq.com
                     </a>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
                     <a href="tel:+971542112891" className="hover:text-[#B89A7A] transition-colors">
-                      +971 54 211 2891
+                      054 211 2891
                     </a>
                   </li>
                 </ul>
@@ -169,11 +169,11 @@ export default function ContactView() {
               {/* Studio Office */}
               <motion.div variants={fadeInUp} className="flex flex-col gap-3">
                 <h3 className="font-sans font-bold text-xs uppercase tracking-wider text-neutral-900 border-b border-neutral-100 pb-2">
-                  Studio Office
+                  Warehouse
                 </h3>
                 <p className="text-xs text-neutral-600 leading-relaxed font-light">
-                  Office 1420, Primetime Tower,<br />
-                  Business Bay, Dubai, UAE
+                  1, Ras Al Khor Industrial Area 2,<br />
+                  Dubai, UAE
                 </p>
               </motion.div>
 
@@ -185,14 +185,14 @@ export default function ContactView() {
                 <ul className="flex flex-col gap-2.5 text-xs text-neutral-600">
                   <li className="flex items-center gap-2.5">
                     <Mail className="w-4 h-4 text-neutral-400 flex-shrink-0" />
-                    <a href="mailto:info@flamesfireplace.com" className="hover:text-[#B89A7A] transition-colors">
-                      info@flamesfireplace.com
+                    <a href="mailto:info@grillsandflamesbbq.com" className="hover:text-[#B89A7A] transition-colors">
+                      info@grillsandflamesbbq.com
                     </a>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Smartphone className="w-4 h-4 text-neutral-400 flex-shrink-0" />
                     <a href="tel:+971542112891" className="hover:text-[#B89A7A] transition-colors">
-                      +971 54 211 2891
+                      054 211 2891
                     </a>
                   </li>
                 </ul>
