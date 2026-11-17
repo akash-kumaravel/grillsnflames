@@ -4,6 +4,7 @@
  */
 
 import { PageId } from '../types';
+import { pagePath, handleLinkClick } from './navLink';
 import { Facebook, Instagram, Linkedin, ExternalLink, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
 interface FooterProps {
@@ -56,34 +57,30 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
               Navigation
             </h4>
             <div className="flex flex-col gap-3 text-sm font-light">
-              <button
-                onClick={() => handleNavClick('home')}
+              <a href="/" onClick={(e) => handleLinkClick(e, () => handleNavClick('home'))}
                 className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
               >
                 <span>Home</span>
                 <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-              </button>
-              <button
-                onClick={() => handleNavClick('work')}
+              </a>
+              <a href="/work" onClick={(e) => handleLinkClick(e, () => handleNavClick('work'))}
                 className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
               >
                 <span>Featured Work</span>
                 <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-              </button>
-              <button
-                onClick={() => handleNavClick('services')}
+              </a>
+              <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))}
                 className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
               >
                 <span>Services</span>
                 <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-              </button>
-              <button
-                onClick={() => handleNavClick('contact')}
+              </a>
+              <a href="/contact" onClick={(e) => handleLinkClick(e, () => handleNavClick('contact'))}
                 className="text-left hover:text-[#B89A7A] transition-colors duration-300 w-fit flex items-center gap-1 group"
               >
                 <span>Get in Touch</span>
                 <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -94,52 +91,46 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs font-light text-neutral-400">
               <li>
-                <button
-                  onClick={() => handleNavClick('services')}
+                <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))}
                   className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
                 >
                   Pergolas
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('services')}
+                <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))}
                   className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
                 >
                   Outdoor Fire Pits
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('services')}
+                <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))}
                   className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
                 >
                   Indoor Fire Pits
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('services')}
+                <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))}
                   className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
                 >
                   Decorative Fire Bowls
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('services')}
+                <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))}
                   className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
                 >
                   Custom BBQ Stations
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('services')}
+                <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))}
                   className="hover:text-[#B89A7A] transition-colors duration-300 text-left cursor-pointer uppercase tracking-wider"
                 >
                   Outdoor Kitchens
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -221,16 +212,16 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
         {/* Copyright & Technical Fineprint */}
         <div className="border-t border-neutral-900/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-neutral-600 font-light">
           <div>
-            &copy; 2026 <a href="https://www.memoinfotech.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#B89A7A] transition-colors underline underline-offset-2">Memo Infotech</a>. All rights reserved.
+            &copy; {currentYear} <a href="https://sequelbox.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#B89A7A] transition-colors underline underline-offset-2">Sequelbox</a>. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => handleNavClick('home')} className="hover:text-[#B89A7A] transition-colors">Home</button>
+            <a href="/" onClick={(e) => handleLinkClick(e, () => handleNavClick('home'))} className="hover:text-[#B89A7A] transition-colors">Home</a>
             <span>&bull;</span>
-            <button onClick={() => handleNavClick('work')} className="hover:text-[#B89A7A] transition-colors">Work</button>
+            <a href="/work" onClick={(e) => handleLinkClick(e, () => handleNavClick('work'))} className="hover:text-[#B89A7A] transition-colors">Work</a>
             <span>&bull;</span>
-            <button onClick={() => handleNavClick('services')} className="hover:text-[#B89A7A] transition-colors">Services</button>
+            <a href="/services" onClick={(e) => handleLinkClick(e, () => handleNavClick('services'))} className="hover:text-[#B89A7A] transition-colors">Services</a>
             <span>&bull;</span>
-            <button onClick={() => handleNavClick('contact')} className="hover:text-[#B89A7A] transition-colors">Contact</button>
+            <a href="/contact" onClick={(e) => handleLinkClick(e, () => handleNavClick('contact'))} className="hover:text-[#B89A7A] transition-colors">Contact</a>
           </div>
         </div>
       </div>

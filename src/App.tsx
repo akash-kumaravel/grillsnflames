@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { PageId } from './types';
 import { PROJECTS, SERVICES_LIST } from './data';
+import { getSeo, SITE_URL } from './seo';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -108,100 +109,26 @@ export default function App() {
     }
   }, [currentPage, activeProjectId, activeServiceId]);
 
+  const seo = getSeo(currentPage, activeProjectId, activeServiceId);
+
   useEffect(() => {
-    let title = "Grills & Flames Dubai | Luxury Outdoor Kitchens, BBQs & Fire Features";
-    let desc = "Grills & Flames designs and builds luxury outdoor kitchens, BBQ stations, pergolas, and fire features in Dubai and across the UAE.";
+    document.title = seo.title;
 
-    if (activeProjectId) {
-      const proj = PROJECTS.find((p) => p.id === activeProjectId);
-      if (proj) {
-        title = `${proj.title} | Grills & Flames Luxury Outdoor Portfolios`;
-        desc = proj.description;
-      }
-    } else if (activeServiceId) {
-      const service = SERVICES_LIST.find((s) => s.id === activeServiceId);
-      if (service) {
-        title = `${service.title} Design & Installation | Grills & Flames Dubai`;
-        desc = service.longDescription || service.description;
-      }
-    } else {
-      switch (currentPage) {
-        case 'home':
-          title = "Grills & Flames Dubai | Luxury Outdoor Kitchens, BBQs & Fire Features";
-          desc = "Grills & Flames designs and builds luxury outdoor kitchens, BBQ stations, pergolas, and fire features in Dubai and across the UAE.";
-          break;
-        case 'work':
-          title = "Luxury Project Portfolio | Grills & Flames Dubai";
-          desc = "Explore our luxury outdoor kitchen, BBQ, pergola, and fire feature portfolio built for Dubai villas and commercial spaces.";
-          break;
-        case 'services':
-          title = "Luxury Outdoor Design Services Dubai | Grills & Flames";
-          desc = "Discover our design and build services for custom BBQ stations, pergolas, fire pits, outdoor kitchens, and luxury masonry in Dubai.";
-          break;
-        case 'about':
-          title = "About Grills & Flames | Master Outdoor Designers in Dubai";
-          desc = "Based in Dubai, Grills & Flames merges world-class structural craftsmanship with luxurious architectural designs for elegant al fresco living spaces.";
-          break;
-        case 'contact':
-          title = "Contact Grills & Flames Dubai | Outdoor Kitchen & Fire Feature Experts";
-          desc = "Contact Grills & Flames for luxury outdoor kitchens, BBQ stations, pergolas, and fire features in Dubai and the UAE.";
-          break;
-      }
-    }
-
-    document.title = title;
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', desc);
-    }
-
-    // Dynamic Canonical URL Update
-    const canonicalLink = document.querySelector('link[rel="canonical"]');
-    let canonicalUrl = 'https://www.grillsandflamesbbq.com';
-    if (activeProjectId) {
-      canonicalUrl += `/project/${activeProjectId}`;
-    } else if (activeServiceId) {
-      canonicalUrl += `/service/${activeServiceId}`;
-    } else if (currentPage !== 'home') {
-      canonicalUrl += `/${currentPage}`;
-    }
-
-    if (canonicalLink) {
-      canonicalLink.setAttribute('href', canonicalUrl);
-    }
-
-    // Dynamic Social Share Tags Update (OG & Twitter)
-    const updateMetaTag = (property: string, content: string, isName = false) => {
-      const attribute = isName ? 'name' : 'property';
-      const element = document.querySelector(`meta[${attribute}="${property}"]`);
-      if (element) {
-        element.setAttribute('content', content);
-      }
+    const setMeta = (selector: string, content: string) => {
+      document.querySelector(selector)?.setAttribute('content', content);
     };
+    const canonicalUrl = seo.path === '/' ? SITE_URL : `${SITE_URL}${seo.path}`;
 
-    let ogImage = 'https://www.grillsandflamesbbq.com/assets/logo.png';
-    if (activeProjectId) {
-      const proj = PROJECTS.find((p) => p.id === activeProjectId);
-      if (proj && proj.heroImage) {
-        ogImage = proj.heroImage;
-      }
-    } else if (activeServiceId) {
-      const service = SERVICES_LIST.find((s) => s.id === activeServiceId);
-      if (service && service.image) {
-        ogImage = service.image;
-      }
-    }
-
-    updateMetaTag('og:title', title);
-    updateMetaTag('og:description', desc);
-    updateMetaTag('og:image', ogImage);
-    updateMetaTag('og:url', canonicalUrl);
-
-    updateMetaTag('twitter:title', title, true);
-    updateMetaTag('twitter:description', desc, true);
-    updateMetaTag('twitter:image', ogImage, true);
-  }, [currentPage, activeProjectId, activeServiceId]);
+    setMeta('meta[name="description"]', seo.description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+    setMeta('meta[property="og:title"]', seo.title);
+    setMeta('meta[property="og:description"]', seo.description);
+    setMeta('meta[property="og:image"]', seo.image);
+    setMeta('meta[property="og:url"]', canonicalUrl);
+    setMeta('meta[name="twitter:title"]', seo.title);
+    setMeta('meta[name="twitter:description"]', seo.description);
+    setMeta('meta[name="twitter:image"]', seo.image);
+  }, [seo.title, seo.description, seo.path, seo.image]);
 
   useEffect(() => {
     const element = footerRef.current;
@@ -245,6 +172,7 @@ export default function App() {
 
         {/* Main Dynamic View Area */}
         <main id="app-dynamic-content" className="flex-grow relative bg-white">
+          {!(currentPage === 'contact' && !activeProjectId && !activeServiceId) && <h1 className="sr-only">{seo.h1}</h1>}
           {activeProject ? (
             <ProjectDetail
               project={activeProject}

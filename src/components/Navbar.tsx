@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { pagePath, handleLinkClick } from './navLink';
 import { useState, useEffect } from 'react';
 import { PageId } from '../types';
 import { Menu, X, Flame } from 'lucide-react';
@@ -65,9 +66,11 @@ export default function Navbar({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
         {/* Brand Logo */}
-        <button
+        <a
           id="navbar-brand-logo"
-          onClick={() => handleNavClick('home')}
+          href="/"
+          aria-label="Grills & Flames home"
+          onClick={(e) => handleLinkClick(e, () => handleNavClick('home'))}
           className="flex items-center group focus:outline-none text-left cursor-pointer"
         >
           <img
@@ -75,17 +78,18 @@ export default function Navbar({
             alt="Grills & Flames Logo"
             className="h-9 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 shrink-0"
           />
-        </button>
+        </a>
 
         {/* Desktop Nav List */}
         <div className="hidden lg:flex items-center gap-8 lg:gap-10">
           {navItems.map((item) => {
             const isActive = currentPage === item.id && !activeProjectId;
             return (
-              <button
+              <a
                 id={`nav-item-${item.id}`}
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                href={pagePath(item.id)}
+                onClick={(e) => handleLinkClick(e, () => handleNavClick(item.id))}
                 className={`font-sans text-xs tracking-[0.2em] font-semibold transition-all duration-200 relative py-1 focus:outline-none cursor-pointer ${
                   isActive
                     ? 'text-[#B89A7A] font-bold'
@@ -99,7 +103,7 @@ export default function Navbar({
                     className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B89A7A] transition-all duration-300"
                   />
                 )}
-              </button>
+              </a>
             );
           })}
         </div>
@@ -131,16 +135,17 @@ export default function Navbar({
             {navItems.map((item) => {
               const isActive = currentPage === item.id && !activeProjectId;
               return (
-                <button
+                <a
                   id={`mobile-nav-item-${item.id}`}
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
+                  href={pagePath(item.id)}
+                  onClick={(e) => handleLinkClick(e, () => handleNavClick(item.id))}
                   className={`text-left font-sans text-xs tracking-[0.2em] font-semibold py-2 border-b border-neutral-900 cursor-pointer ${
                     isActive ? 'text-[#B89A7A] pl-2 border-[#B89A7A]/30' : 'text-neutral-300 hover:text-white'
                   }`}
                 >
                   {item.label}
-                </button>
+                </a>
               );
             })}
           </div>
