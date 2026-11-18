@@ -5,7 +5,7 @@
 
 import { PageId } from '../types';
 import { pagePath, handleLinkClick } from './navLink';
-import { Facebook, Instagram, Linkedin, ExternalLink, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Instagram, ExternalLink, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
 interface FooterProps {
   setCurrentPage: (page: PageId) => void;
@@ -182,20 +182,6 @@ export default function Footer({ setCurrentPage, resetProject }: FooterProps) {
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" strokeWidth={1.5} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4" strokeWidth={1.5} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 hover:border-neutral-700 transition-all duration-300"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" strokeWidth={1.5} />
               </a>
             </div>
           </div>
